@@ -4,7 +4,7 @@ import Winner from './Winner';
 
 
 const ConnectFour = (props) => {
-  const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)))
+  const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)));
   const [playerOneTurn, setPlayerOneTurn] = useState(true);
   const [winner, setWinner] = useState('');
 
@@ -14,31 +14,22 @@ const ConnectFour = (props) => {
 
   function checkIfWinner(){
     /* --- Check rows --- */
-    board.forEach((row) => {
-      for(let i = 1; i <= 2; i++){
-        if(
-          (row[0] === i && row[1] === i && row[2] === i && row[3] === i) ||
-          (row[1] === i && row[2] === i && row[3] === i && row[4] === i) ||
-          (row[2] === i && row[3] === i && row[4] === i && row[5] === i) ||
-          (row[3] === i && row[4] === i && row[5] === i && row[6] === i)
-        ){
-          i === 1 ? setWinner('Player one wins') : setWinner('Player two wins');
-        }
-      }
-    })
-    /* --- Check columns --- */
-    for(let col = 0; col < board[0].length; col++){
-      for(let i = 1; i <= 2; i++){
-        if(
-          (board[0][col] === i && board[1][col] === i && board[2][col] === i && board[3][col] === i) ||
-          (board[1][col] === i && board[2][col] === i && board[3][col] === i && board[4][col] === i) ||
-          (board[2][col] === i && board[3][col] === i && board[4][col] === i && board[5][col] === i)
-        ){
-          i === 1 ? setWinner('Player one wins') : setWinner('Player two wins');
-        }
-      }
-    }
     for(let i = 1; i <= 2; i++){
+      board.forEach((row) => {
+        for(let col = 0; col < row.length - 3; col++){
+          if(row[col] === i && row[col + 1] === i && row[col + 2] === i && row[col + 3] === i){
+            i === 1 ? setWinner('Player one wins') : setWinner('Player two wins');
+          }
+        }
+      })
+      /* --- Check columns --- */
+      for(let col = 0; col < board[0].length; col++){
+        for(let row = 0; row < board.length - 3; row++){
+          if(board[row][col] === i && board[row + 1][col] === i && board[row + 2][col] === i && board[row + 3][col] === i){
+            i === 1 ? setWinner('Player one wins') : setWinner('Player two wins');
+          }
+        }
+      }
       for(let row = 0; row <= board.length - 4; row++){
         /* --- Check diagonal top left to bottom right --- */
         for(let col = 0; col <= board[0].length - 4; col++){
@@ -55,7 +46,6 @@ const ConnectFour = (props) => {
       }
     }
   }
-
 
   function onColumnClick(col){
     const boardCopy = [...board];
