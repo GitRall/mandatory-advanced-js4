@@ -50,14 +50,14 @@ const ConnectFour = (props) => {
   }
   function checkIfDraw(){
     let draw = true;
-    board.forEach((row) => {
+    for(let row of board){
       for(let x of row){
         if(!x){
           draw = false;
           return;
         }
       }
-    })
+    }
     if(draw){
       setWinner('Draw');
     }
