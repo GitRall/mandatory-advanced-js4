@@ -1,40 +1,150 @@
 .App{
-  /* position: relative; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 10px 0 10px 0;
+  box-sizing: border-box;
+  background: #37474F;
+}
+.App::before{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  background: url('img/seamless-rusty-metal-texture.jpg');
+  opacity: 0.05;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  min-width: 700px;
+  height: 150px;
+  background: #455A64;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  z-index: 1;
+}
+.header__coin-wrapper{
+  position: relative;
+  width: 200px;
+  height: 100%;
+  user-select: none;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px 0 0 20px;
+}
+.header__winner-wrapper{
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.board__table{
-  border-collapse: collapse;
+.header__winner-text{
+  font-size: 40px;
+  color: #fff;
 }
-tr{
-  /* display: flex; */
+.header__reset-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+  user-select: none;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0 20px 20px 0;
+}
+.header__reset-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: #546E7A;
+  color: #fff;
+  transform: scale(1);
+  transition: transform 0.2s linear;
+}
+.header__reset-btn:hover{
+  transform: scale(1.2);
+}
+.header__reset-icon{
+  font-size: 34px;
+}
+.board__table{
+  position: relative;
+  background-color: #455A64;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  min-width: 700px;
+  min-height: 600px;
 }
 .board__item{
   position: relative;
-  text-align: center;
   width: 100px;
   height: 100px;
-  border: 1px solid #757575;
   cursor: pointer;
   user-select: none;
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 .board__item-circle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
-  /* background: dodgerblue; */
+  border-radius: 50%;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 35px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
+}
+.board__item-circle--hidden{
+  display: none;
+}
+.board__item-circle::before{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  content: '';
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 0 5px 0 #212121 inset;
   border-radius: 50%;
 }
-.winner-text{
-  /* position: absolute;
+.board__item-circle::after{
+  position: absolute;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, 50px); */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  content: '';
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: url('img/seamless-rusty-metal-texture.jpg');
+  opacity: 0.1;
+}
+.board__item-text{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 35px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
 }

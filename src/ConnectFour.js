@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Board from './Board';
 import Winner from './Winner';
-
+import Coin from './Coin';
+import Reset from './Reset';
 
 const ConnectFour = (props) => {
   const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)));
@@ -10,7 +11,8 @@ const ConnectFour = (props) => {
 
   useEffect(() => {
     checkIfWinner();
-  })
+    checkIfDraw();
+  },[playerOneTurn])
 
   function checkIfWinner(){
     /* --- Check rows --- */
@@ -46,6 +48,20 @@ const ConnectFour = (props) => {
       }
     }
   }
+  function checkIfDraw(){
+    let draw = true;
+    board.forEach((row) => {
+      for(let x of row){
+        if(!x){
+          draw = false;
+          return;
+        }
+      }
+    })
+    if(draw){
+      setWinner('Draw');
+    }
+  }
 
   function onColumnClick(col){
     const boardCopy = [...board];
@@ -62,10 +78,20 @@ const ConnectFour = (props) => {
       }
     }
   }
+  function resetGame(){
+    setBoard(Array(6).fill(Array(7).fill(null)));
+    setPlayerOneTurn(true);
+    setWinner('');
+  }
 
   return(
     <>
-      { winner ? <Winner currentWinner={winner}/> : null}
+      <header>
+        <Coin playerOneTurn={playerOneTurn} />
+        { winner ? <Winner currentWinner={winner}/> : null}
+        <Reset resetGame={resetGame}/>
+      </header>
+
       <Board board={board} onColumnClick={onColumnClick} winner={winner}/>
     </>
   )
