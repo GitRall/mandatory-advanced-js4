@@ -51,8 +51,8 @@ const ConnectFour = (props) => {
   function checkIfDraw(){
     let draw = true;
     for(let row of board){
-      for(let x of row){
-        if(!x){
+      for(let col of row){
+        if(!col){
           draw = false;
           return;
         }
