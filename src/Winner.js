@@ -14,8 +14,11 @@ function getColor(winner){
 
 const Winner = (props) => {
   return(
-    <div className='header__winner-wrapper'>
-      <h1 className='header__winner-text' style={{color: getColor(props.currentWinner)}}>{props.currentWinner}</h1>
+    <div className='overlay__winner'>
+      <div className='overlay__winner-container'>
+        <h1 className='overlay__winner-text' style={{color: getColor(props.currentWinner)}}>{props.currentWinner}</h1>
+        <button className='overlay__reset-btn' onClick={props.resetGame}>Restart</button>
+      </div>
     </div>
   )
 }

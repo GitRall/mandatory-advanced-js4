@@ -86,9 +86,12 @@ const ConnectFour = (props) => {
 
   return(
     <>
+      { winner ? <Winner currentWinner={winner} resetGame={resetGame}/> : null}
       <header>
         <Coin playerOneTurn={playerOneTurn} />
-        { winner ? <Winner currentWinner={winner}/> : null}
+        <div className='header__title-wrapper'>
+          <h1 className='header__title-text'>Connect Four</h1>
+        </div>
         <Reset resetGame={resetGame}/>
       </header>
 
